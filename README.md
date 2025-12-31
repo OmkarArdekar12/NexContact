@@ -1,3 +1,3 @@
 # NexContact
 
-## NextJS
+## NextJS Based Contact Manager Application
