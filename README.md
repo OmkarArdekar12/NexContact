@@ -1,3 +1,3 @@
 # NexContact
 
-## Contact Manager Application Using NextJS and GeminiAI
+## Contact Manager Application Using NextJS
