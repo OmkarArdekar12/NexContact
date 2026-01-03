@@ -4,4 +4,4 @@
 
 ## Tech Stack
 
-## NextJS 15
+## NextJS
