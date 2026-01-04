@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useActionState, useEffect } from "react";
 import { ContactType } from "../_types/contact";
 import { useRouter } from "next/navigation";
