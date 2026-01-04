@@ -10,6 +10,10 @@ type RegisterState = {
   error?: string;
 };
 
+type LoginState = {
+  error?: string;
+};
+
 export const registerAction = async (
   prevState: RegisterState,
   formData: FormData
@@ -51,19 +55,25 @@ export const registerAction = async (
   redirect("/contact");
 };
 
-export const loginAction = async (formData: FormData) => {
-  console.log("formData: ", formData);
+export const loginAction = async (
+  prevState: LoginState,
+  formData: FormData
+): Promise<LoginState> => {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  if (!email || !password) {
+    return { error: "Email and password are required" };
+  }
   try {
     const response = await axios.get(
-      `${API_URL}/users?email=${formData.get("email")}&password=${formData.get(
-        "password"
-      )}`
+      `${API_URL}/users?email=${email}&password=${password}`
     );
     const user: UserType = response.data[0];
     if (!user) {
       throw new Error("Invalid Credentials");
     }
-    // set user in the cookies
+    //set user in the cookies
     await setSession({ name: user.name, email: user.email, id: user.id });
   } catch (err) {
     return { error: "Failed to login. Please try again." };
